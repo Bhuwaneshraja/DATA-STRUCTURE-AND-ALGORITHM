@@ -1,0 +1,121 @@
+class Node
+{
+    int data;
+    Node next;
+    
+    Node(int data)
+    {
+        this.data=data;
+        this.next=null;
+    }
+}
+// ********************************
+// class Stack { 
+//     int top, cap; 
+//     int[] data; 
+
+//     public Stack(int cap) { 
+//         this.cap = cap; 
+//         top = -1; 
+//         data = new int[cap]; 
+//     } 
+
+// *******************************
+    class Stack{
+        Node top;
+        int count;
+        public void push(int data){
+            Node newNode=new Node(data);
+            newNode.next=top;
+            top=newNode;
+            count++;
+            System.out.println(data+"Push data added on Stack");
+      }
+    
+    
+    public int pop(){
+        if(isEmpty())
+        {
+            System.out.println("Stack under low");
+            return-1;
+        }
+        int poped=top.data;
+        top=top.next;
+        count--;
+        System.out.println(poped+"Poped from Stack");
+        return poped;
+    }
+    public int peek(){
+        if(isEmpty()){
+            System.out.println("Stack is empty");
+            return-1;
+        }
+        return top.data;
+    }
+    public boolean isEmpty()
+    {
+        return top == null;
+    }
+    public int size(){
+        return count;
+    }
+    
+    public void clear(){
+        top=null;
+        count=0;
+        System.out.println("Stack is cleared");
+    }
+    public boolean contains(int value){
+        Node temp=top;
+        while(temp!=null)
+        {
+            if(temp.data==value)
+            return true;
+            temp=temp.next;
+        }
+        return false;
+    }
+
+
+public void display()
+{
+    if(isEmpty()){
+        System.out.println("Stack is empty");
+        return;
+    }
+    Node temp=top;
+    System.out.println("Stack top on bottom");
+    while(temp!=null)
+    {
+        System.out.println(temp.data+ " ");
+        temp=temp.next;
+    }
+    System.out.println();
+}
+}
+
+
+public class Main{
+    public static void main(String[]args){
+    Stack stack=new Stack();
+    
+    stack.push(10);
+    stack.push(20);
+    stack.push(30);
+    stack.push(60);
+    stack.display();
+    
+    System.out.println("Top element is:"+stack.peek());
+    System.out.println("Top element is:"+stack.size());
+    
+    stack.pop();
+    stack.display();
+    
+    System.out.println("Contains 20"+stack.contains(20));
+    System.out.println("Top element is:"+stack.contains(40));
+    
+    stack.clear();
+    stack.display();
+    
+}
+}
