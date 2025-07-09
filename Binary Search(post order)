@@ -1,0 +1,42 @@
+class Node{
+    int data;
+    Node left,right;
+    Node(int value){
+        data=value;
+        left=right=null;
+    }
+}
+class Main{
+    Node root;
+    Node insert(Node node,int value){
+        if(node==null){
+            return new Node(value);
+        }
+        if(value<node.data){
+            node.left=insert(node.left,value);
+        }
+        else if(value>node.data){
+             node.right=insert(node.right,value);
+        }
+        return node;
+    }
+
+  void postorder(Node node){
+      if(node!=null){
+          System.out.println(node.data+" ");
+          postorder(node.left);
+          
+          postorder(node.right);
+      }
+  }
+
+public static void main(String []args){
+    Main tree =new Main();
+    int[] value={50,30,20,40,70,60,80};
+    for(int valueS:value){
+        tree.root=tree.insert(tree.root,valueS);
+    }
+    System.out.println("postorder traversal of BST ");
+    tree.postorder(tree.root);
+}
+}
